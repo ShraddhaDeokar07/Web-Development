@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPath | Smart Career Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <a href="#" class="brand" data-page="home">
+                <span class="brand-icon">S</span>
+                <span>SkillPath<small>LEARN • GROW • SUCCEED</small></span>
+            </a>
+
+            <p class="menu-label">WORKSPACE</p>
+            <nav class="navigation">
+                <button class="nav-link active" data-page="home">⌂ <span>Dashboard</span></button>
+                <button class="nav-link" data-page="courses">▤ <span>My Courses</span></button>
+                <button class="nav-link" data-page="roadmap">⌁ <span>Career Roadmap</span></button>
+                <button class="nav-link" data-page="practice">⌨ <span>Practice & Homework</span></button>
+                <button class="nav-link" data-page="projects">◇ <span>Projects</span></button>
+                <button class="nav-link" data-page="resources">▧ <span>Resources</span></button>
+                <button class="nav-link" data-page="progress">◷ <span>My Progress</span></button>
+                <button class="nav-link" data-page="profile">◎ <span>My Profile</span></button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-tip">
+                    <span class="tip-icon">✦</span>
+                    <h3>Small steps, big dreams.</h3>
+                    <p>Keep learning. Your future self will thank you.</p>
+                </div>
+                <p class="sidebar-footer">SkillPath © 2026</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+                <div class="breadcrumb">Workspace <span>/</span> <strong id="pageLabel">Dashboard</strong></div>
+                <div class="topbar-right">
+                    <span class="status-dot"></span>
+                    <span class="online-label">Your learning space</span>
+                    <div class="avatar" id="topAvatar">S</div>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <!-- DASHBOARD -->
+                <section class="page active" id="home">
+                    <div class="welcome-banner">
+                        <div class="welcome-copy">
+                            <span class="eyebrow light">YOUR PERSONAL LEARNING SPACE</span>
+                            <h1 id="welcomeTitle">Welcome to SkillPath! 👋</h1>
+                            <p>Your goals are closer than you think. Learn something new today.</p>
+                            <button class="button button-white" data-page="roadmap">Explore my roadmap ↗</button>
+                        </div>
+                        <div class="banner-art" aria-hidden="true">
+                            <div class="art-circle"></div>
+                            <div class="art-card"><span>✦</span><b>Keep going!</b><small>One step at a time</small></div>
+                            <div class="art-star">✧</div>
+                        </div>
+                    </div>
+
+                    <div class="section-heading">
+                        <div><h2>Your learning overview</h2><p>A little progress every day adds up.</p></div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card"><div class="stat-icon purple">▤</div><p>Available courses</p><h3 id="courseCount">0</h3><small>Topics to explore</small></article>
+                        <article class="stat-card"><div class="stat-icon green">✓</div><p>Completed tasks</p><h3 id="completedCount">0</h3><small>Tasks you finished</small></article>
+                        <article class="stat-card"><div class="stat-icon orange">◷</div><p>Pending tasks</p><h3 id="pendingCount">0</h3><small>Keep moving forward</small></article>
+                        <article class="stat-card"><div class="stat-icon blue">↗</div><p>Overall progress</p><h3 id="progressNumber">0%</h3><small>Your task completion</small></article>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <article class="panel">
+                            <div class="panel-heading"><div><h2>Continue learning</h2><p>Explore a topic and start learning.</p></div><button class="text-button" data-page="courses">View all →</button></div>
+                            <div class="course-list" id="homeCourses"></div>
+                        </article>
+                        <article class="panel">
+                            <div class="panel-heading"><div><h2>Your daily focus</h2><p>Build a consistent habit.</p></div><span class="pill">Today</span></div>
+                            <div class="focus-card"><span class="focus-emoji">🎯</span><h3>Make today count</h3><p>Add one task, practise a skill, and celebrate your progress.</p><button class="button button-primary" data-page="practice">Plan my learning</button></div>
+                            <div class="mini-progress"><div><span>Task completion</span><strong id="miniProgressText">0%</strong></div><div class="progress-track"><div class="progress-fill" id="miniProgressBar"></div></div></div>
+                        </article>
+                    </div>
+
+                    <article class="panel roadmap-preview">
+                        <div class="panel-heading"><div><h2>Choose your career direction</h2><p>Follow a structured path towards your goal.</p></div><button class="text-button" data-page="roadmap">View roadmaps →</button></div>
+                        <div class="career-grid">
+                            <button class="career-card" data-career="Web Developer"><span>🌐</span><strong>Web Developer</strong><small>Build websites and web apps</small></button>
+                            <button class="career-card" data-career="Software Developer"><span>💻</span><strong>Software Developer</strong><small>Build software solutions</small></button>
+                            <button class="career-card" data-career="Data Analyst"><span>📊</span><strong>Data Analyst</strong><small>Explore data and insights</small></button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- COURSES -->
+                <section class="page" id="courses">
+                    <div class="page-intro"><span class="eyebrow">LEARN SOMETHING NEW</span><h1>Explore Courses</h1><p>Discover skills, learn the fundamentals, and grow at your own pace.</p></div>
+                    <div class="filter-row"><input id="courseSearch" type="search" placeholder="Search courses..." aria-label="Search courses"><select id="categoryFilter" aria-label="Filter courses"><option value="All">All categories</option><option value="Programming">Programming</option><option value="Web Development">Web Development</option><option value="Data & Tools">Data & Tools</option><option value="Career Skills">Career Skills</option></select></div>
+                    <div class="courses-grid" id="coursesGrid"></div>
+                </section>
+
+                <!-- ROADMAP -->
+                <section class="page" id="roadmap">
+                    <div class="page-intro"><span class="eyebrow">YOUR NEXT CHAPTER</span><h1>Career Roadmap</h1><p>Choose a career and follow the learning stages one by one.</p></div>
+                    <div class="roadmap-controls"><label for="careerSelect">Choose your career</label><select id="careerSelect"><option>Web Developer</option><option>Software Developer</option><option>Data Analyst</option></select></div>
+                    <div class="roadmap-summary" id="roadmapSummary"></div>
+                    <div class="roadmap-list" id="roadmapContent"></div>
+                    <p class="note">This roadmap is a learning guide, not a guarantee of a job. Practise, build projects, and prepare for interviews.</p>
+                </section>
+
+                <!-- PRACTICE -->
+                <section class="page" id="practice">
+                    <div class="page-intro"><span class="eyebrow">PRACTISE TO IMPROVE</span><h1>Practice & Homework</h1><p>Turn what you learn into a regular habit.</p></div>
+                    <div class="task-summary" id="taskSummary"></div>
+                    <form id="taskForm" class="panel task-form">
+                        <h2>Add a learning task</h2>
+                        <label for="taskInput">Task name</label>
+                        <input id="taskInput" type="text" maxlength="100" placeholder="e.g. Practise 5 C programs" required>
+                        <div class="form-row">
+                            <div><label for="taskCategory">Category</label><select id="taskCategory"><option>Programming</option><option>Web Development</option><option>Database</option><option>Interview Preparation</option><option>Project</option><option>Other</option></select></div>
+                            <div><label for="taskDate">Due date (optional)</label><input id="taskDate" type="date"></div>
+                        </div>
+                        <button class="button button-primary" type="submit">＋ Add task</button>
+                    </form>
+                    <div class="panel task-panel"><div class="panel-heading"><div><h2>My tasks</h2><p>Tick a task when you finish it.</p></div><select id="taskFilter" aria-label="Filter tasks"><option value="All">All tasks</option><option value="Pending">Pending</option><option value="Completed">Completed</option></select></div><div id="taskList" class="task-list"></div></div>
+                </section>
+
+                <!-- PROJECTS -->
+                <section class="page" id="projects">
+                    <div class="page-intro"><span class="eyebrow">LEARN BY BUILDING</span><h1>Project Studio</h1><p>Start small, build confidently, and add projects to your portfolio.</p></div>
+                    <div class="courses-grid" id="projectsGrid"></div>
+                </section>
+
+                <!-- RESOURCES -->
+                <section class="page" id="resources">
+                    <div class="page-intro"><span class="eyebrow">YOUR LEARNING LIBRARY</span><h1>Learning Resources</h1><p>Useful documentation and learning websites in one place.</p></div>
+                    <div class="courses-grid" id="resourcesGrid"></div>
+                    <p class="note">External links open learning websites. Always follow their terms and use safe browsing practices.</p>
+                </section>
+
+                <!-- PROGRESS -->
+                <section class="page" id="progress">
+                    <div class="page-intro"><span class="eyebrow">EVERY STEP COUNTS</span><h1>My Progress</h1><p>Review your completed work and see how far you have come.</p></div>
+                    <div class="stats-grid">
+                        <article class="stat-card"><div class="stat-icon purple">▤</div><p>Total tasks</p><h3 id="progressTotal">0</h3></article>
+                        <article class="stat-card"><div class="stat-icon green">✓</div><p>Completed</p><h3 id="progressDone">0</h3></article>
+                        <article class="stat-card"><div class="stat-icon orange">◷</div><p>Pending</p><h3 id="progressPending">0</h3></article>
+                        <article class="stat-card"><div class="stat-icon blue">↗</div><p>Completion</p><h3 id="progressPercent">0%</h3></article>
+                    </div>
+                    <article class="panel progress-panel"><h2>Overall task progress</h2><div class="large-progress"><div id="largeProgressBar"></div></div><p id="progressMessage">Add your first task to begin tracking your progress.</p></article>
+                    <article class="panel"><h2>Learning tips</h2><ul class="tips-list"><li>Practise a little every day.</li><li>Build small projects after learning a topic.</li><li>Revise fundamentals and explain concepts in your own words.</li><li>Keep your GitHub projects organised.</li><li>Prepare your resume and practise interviews.</li></ul></article>
+                </section>
+                
+<!-- PROFILE -->
+<section class="page" id="profile">
+
+    <div class="page-intro">
+        <span class="eyebrow">MAKE IT YOURS</span>
+        <h1>My Profile</h1>
+        <p>Manage your learning preferences and career goals.</p>
+    </div>
+
+    <form id="profileForm" class="panel profile-form">
+
+        <div class="profile-avatar" id="profileAvatar">S</div>
+
+        <div class="form-row">
+            <div>
+                <label for="studentName">Your name</label>
+                <input
+                    id="studentName"
+                    type="text"
+                    maxlength="60"
+                    placeholder="Enter your name"
+                    required>
+            </div>
+
+            <div>
+                <label for="education">Education</label>
+                <select id="education">
+                    <option>BCA</option>
+                    <option>BSc Computer Science</option>
+                    <option>B.Tech / BE</option>
+                    <option>MCA</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div>
+                <label for="year">Current year</label>
+                <select id="year">
+                    <option>First Year</option>
+                    <option>Second Year</option>
+                    <option>Final Year</option>
+                    <option>Graduate</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="career">Target career</label>
+                <select id="career">
+                    <option>Web Developer</option>
+                    <option>Software Developer</option>
+                    <option>Data Analyst</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="goal">Your learning goal</label>
+            <textarea
+                id="goal"
+                rows="3"
+                placeholder="Example: Get an IT internship and improve my coding skills."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Your technical skills and interests</label>
+
+            <div class="skills-checks">
+                <label><input type="checkbox" name="skills" value="C / C++"> C / C++</label>
+                <label><input type="checkbox" name="skills" value="C# / .NET"> C# / .NET</label>
+                <label><input type="checkbox" name="skills" value="OOP"> OOP</label>
+                <label><input type="checkbox" name="skills" value="DSA"> DSA</label>
+                <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+                <label><input type="checkbox" name="skills" value="HTML / CSS"> HTML / CSS</label>
+                <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                <label><input type="checkbox" name="skills" value="Python"> Python</label>
+                <label><input type="checkbox" name="skills" value="React"> React</label>
+            </div>
+        </div>
+
+        <button class="button button-primary" type="submit">
+            Save My Profile
+        </button>
+
+        <p id="profileMessage" class="form-message" role="status"></p>
+
+    </form>
+</section>
+
+<!-- AI STUDY ASSISTANT -->
+<section id="ai-assistant" class="page ai-assistant-page">
+
+    <div class="ai-hero">
+        <div class="ai-robot">🤖</div>
+
+        <div>
+            <h1>AI Study Assistant</h1>
+            <h3>Ask anything, learn anything! 🚀</h3>
+            <p>Get help with programming, coding examples, study plans and career guidance.</p>
+        </div>
+
+        <div class="ai-topics">
+            <h3>You can ask me about:</h3>
+            <p>✅ Programming concepts</p>
+            <p>✅ Code explanations and debugging</p>
+            <p>✅ Study plans and learning tips</p>
+            <p>✅ Practice questions and exams</p>
+        </div>
+    </div>
+
+    <div class="ai-workspace">
+
+        <aside class="ai-suggestions">
+            <h3>💡 Quick Suggestions</h3>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Explain OOP with a simple example.">
+                🔹 Explain a concept
+            </button>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Give me a beginner-friendly C++ coding example.">
+                💻 Give me a coding example
+            </button>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Explain how to debug a programming error.">
+                🛠️ Help with an error
+            </button>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Create a 7-day Web Development study plan.">
+                📅 Suggest a study plan
+            </button>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Give me five beginner programming questions with hints.">
+                📝 Practice questions
+            </button>
+
+            <button type="button" class="ai-suggestion"
+                data-prompt="Give me a Software Developer internship roadmap.">
+                🎯 Career guidance
+            </button>
+        </aside>
+
+        <div class="ai-chat">
+            <div class="ai-chat-header">
+                <div>
+                    <h3>Study Chat</h3>
+                    <p>🟢 SkillPath Learning Assistant</p>
+                </div>
+                <button type="button" id="aiClearChat">Clear Chat</button>
+            </div>
+
+            <div id="aiMessages" class="ai-messages" aria-live="polite">
+                <div class="ai-message ai-bot-message">
+                    <div class="ai-avatar">🤖</div>
+                    <div class="ai-bubble">
+                        <strong>Hello Shraddha! 👋</strong>
+                        <p>I'm your Study Assistant.</p>
+                        <p>Ask me about coding, projects, concepts, or your career.</p>
+                        <p>Let's learn and grow together! 💙</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="aiChatForm" class="ai-chat-form">
+                <textarea id="aiMessageInput" rows="2"
+                    placeholder="Type your message here..." required></textarea>
+                <button type="submit" class="ai-send-btn">➤</button>
+            </form>
+
+            <div class="ai-language-chips">
+                <button type="button" data-topic="C">C</button>
+                <button type="button" data-topic="C++">C++</button>
+                <button type="button" data-topic="C#">C#</button>
+                <button type="button" data-topic="Python">Python</button>
+                <button type="button" data-topic="HTML">HTML</button>
+                <button type="button" data-topic="CSS">CSS</button>
+                <button type="button" data-topic="JavaScript">JavaScript</button>
+                <button type="button" data-topic="DSA">DSA</button>
+            </div>
+
+            <p class="ai-note">
+                Demo version: built-in sample answers; live AI connection is not enabled.
+            </p>
+        </div>
+
+    </div>
+</section>
+        </div>
+    </div>
+
+    <!-- Current year, career goal, learning goal,
+         interests, Save button ani profileMessage
+         he sagle ithech aahet -->
+
+</form>
+                </section>
+
+                <footer class="main-footer">Made for curious learners <span>♥</span> SkillPath © 2026</footer>
+            </div>
+        </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
